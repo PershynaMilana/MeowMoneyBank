@@ -6,6 +6,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const userRoutes = require('./routes/userRoutes');
 const sourceIncomeRoutes = require('./routes/routerSI')
+const sourceOutcomeRoutes = require('./routes/routerSO')
 const app = express();
 
 
@@ -18,7 +19,8 @@ app.use(cookieParser());
 app.use(session({ secret: 'secret-key', resave: false, saveUninitialized: true }));
 
 app.use('/api',userRoutes);
-app.use('/api', sourceIncomeRoutes)
+app.use('/api', sourceIncomeRoutes);
+app.use('/api', sourceOutcomeRoutes);
 
 
 const port = 8080;
