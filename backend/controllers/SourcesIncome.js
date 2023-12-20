@@ -23,7 +23,7 @@ module.exports.delSourceIncome = async(req, res) => {
             name : req.body.name
         })
 
-        res.json(`${req.body.name} видалено!`)
+        res.json(`${req.body.name} delete!`)
     }
     catch(e) {
         res.json(e)
@@ -32,9 +32,35 @@ module.exports.delSourceIncome = async(req, res) => {
 
 module.exports.updateSourceIncome = async(req, res) => {
     try {
+        const updateSourceIncome = {
+            name : req.body.name,
+            price : req.body.price
+        }
 
+        const updtSourceIncome = await SourceOfIncome.findOneAndUpdate(
+            {
+                name : req.body.oldname
+            },
+            {
+                $set:updateSourceIncome
+            },
+            {
+                new:true
+            }
+        ) 
+
+        res.json(`${updtSourceIncome.name} updated!`)
     }
     catch(e) {
         res.json(e)
+    }
+}
+
+module.exports.getAllSourcesIncome = async(req, res) => {
+    try {
+        const sourcesIncome = SourceOfIncome.find({})
+    }
+    catch(e) {
+
     }
 }
